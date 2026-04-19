@@ -1,0 +1,456 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-main: #0F131F;
+    --surface: rgba(20, 24, 38, 0.7);
+    --on-surface: #DFE2F3;
+    --on-surface-low: #CBC3D9;
+    --primary: #CDBDFF;
+    --primary-glow: rgba(205, 189, 255, 0.4);
+    --secondary: #BDF4FF;
+    --tertiary: #FFABF3;
+    --border: rgba(255, 255, 255, 0.08);
+    --logo-bg: transparent;
+  }
+
+  :root.light {
+    --bg-main: #FFFFFF;
+    --surface: #FFFFFF;
+    --on-surface: #0F172A;
+    --on-surface-low: #334155;
+    --primary: #6D28D9;
+    --primary-glow: rgba(109, 40, 217, 0.15);
+    --secondary: #0EA5E9;
+    --tertiary: #D946EF;
+    --border: rgba(0, 0, 0, 0.06);
+    --logo-bg: #FFFFFF;
+    --accent-purple-dark: #5B21B6;
+    --accent-blue-dark: #0E7490;
+    --accent-yellow-dark: #854D0E;
+    --accent-pink-dark: #9D174D;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--on-surface);
+    @apply font-sans transition-colors duration-500;
+    min-height: 100vh;
+  }
+
+  .app-shell,
+  .auth-shell {
+    background-color: var(--bg-main);
+    color: var(--on-surface);
+  }
+
+  :root.light .ambient-glow {
+    opacity: 0.05 !important;
+    filter: blur(140px);
+  }
+
+  :root.light [class*="bg-[#0F131F]"] {
+    background-color: #FFFFFF !important;
+  }
+
+  :root.light [class^="text-[#DFE2F3]"],
+  :root.light [class*=" text-[#DFE2F3]"] {
+    color: var(--on-surface) !important;
+  }
+
+  :root.light [class^="text-[#CBC3D9]"],
+  :root.light [class*=" text-[#CBC3D9]"] {
+    color: var(--on-surface-low) !important;
+  }
+
+  :root.light [class^="text-[#17004b]"],
+  :root.light [class*=" text-[#17004b]"],
+  :root.light [class^="text-[#380038]"],
+  :root.light [class*=" text-[#380038]"],
+  :root.light [class^="text-[#002A30]"],
+  :root.light [class*=" text-[#002A30]"] {
+    color: #FFFFFF !important;
+  }
+
+  :root.light [class*="hover:text-[#17004b]"]:hover,
+  :root.light [class*="hover:text-[#380038]"]:hover,
+  :root.light [class*="hover:text-[#002A30]"]:hover {
+    color: #FFFFFF !important;
+  }
+
+  /* Keep bright accent utilities dark when light mode is active. */
+  :root.light [class^="text-[#CDBDFF]"],
+  :root.light [class*=" text-[#CDBDFF]"] {
+    color: var(--accent-purple-dark) !important;
+  }
+
+  :root.light [class^="text-[#BDF4FF]"],
+  :root.light [class*=" text-[#BDF4FF]"] {
+    color: var(--accent-blue-dark) !important;
+  }
+
+  :root.light [class^="text-[#FDE047]"],
+  :root.light [class*=" text-[#FDE047]"] {
+    color: var(--accent-yellow-dark) !important;
+  }
+
+  :root.light [class^="text-[#FFABF3]"],
+  :root.light [class*=" text-[#FFABF3]"] {
+    color: var(--accent-pink-dark) !important;
+  }
+
+  :root.light [class*="hover:text-[#CDBDFF]"]:hover {
+    color: var(--accent-purple-dark) !important;
+  }
+
+  :root.light [class*="hover:text-[#BDF4FF]"]:hover {
+    color: var(--accent-blue-dark) !important;
+  }
+
+  :root.light [class*="hover:text-[#FDE047]"]:hover {
+    color: var(--accent-yellow-dark) !important;
+  }
+
+  :root.light [class*="hover:text-[#FFABF3]"]:hover {
+    color: var(--accent-pink-dark) !important;
+  }
+
+  :root.light .group:hover [class*="group-hover:text-[#CDBDFF]"] {
+    color: var(--accent-purple-dark) !important;
+  }
+
+  :root.light .group:hover [class*="group-hover:text-[#BDF4FF]"] {
+    color: var(--accent-blue-dark) !important;
+  }
+
+  :root.light .group:hover [class*="group-hover:text-[#FDE047]"] {
+    color: var(--accent-yellow-dark) !important;
+  }
+
+  :root.light .group:hover [class*="group-hover:text-[#FFABF3]"] {
+    color: var(--accent-pink-dark) !important;
+  }
+
+  :root.light [class^="bg-[#CDBDFF]"],
+  :root.light [class*=" bg-[#CDBDFF]"],
+  :root.light [class^="bg-[#CDBDFF]/"],
+  :root.light [class*=" bg-[#CDBDFF]/"] {
+    background-color: var(--accent-purple-dark) !important;
+  }
+
+  :root.light [class^="bg-[#BDF4FF]"],
+  :root.light [class*=" bg-[#BDF4FF]"],
+  :root.light [class^="bg-[#BDF4FF]/"],
+  :root.light [class*=" bg-[#BDF4FF]/"] {
+    background-color: var(--accent-blue-dark) !important;
+  }
+
+  :root.light [class^="bg-[#FDE047]"],
+  :root.light [class*=" bg-[#FDE047]"],
+  :root.light [class^="bg-[#FDE047]/"],
+  :root.light [class*=" bg-[#FDE047]/"] {
+    background-color: var(--accent-yellow-dark) !important;
+  }
+
+  :root.light [class^="bg-[#FFABF3]"],
+  :root.light [class*=" bg-[#FFABF3]"],
+  :root.light [class^="bg-[#FFABF3]/"],
+  :root.light [class*=" bg-[#FFABF3]/"] {
+    background-color: var(--accent-pink-dark) !important;
+  }
+
+  :root.light [class^="bg-[rgba(205,189,255"],
+  :root.light [class*=" bg-[rgba(205,189,255"] {
+    background-color: rgba(91, 33, 182, 0.12) !important;
+  }
+
+  :root.light [class^="bg-[rgba(189,244,255"],
+  :root.light [class*=" bg-[rgba(189,244,255"] {
+    background-color: rgba(14, 116, 144, 0.12) !important;
+  }
+
+  :root.light [class^="bg-[rgba(253,224,71"],
+  :root.light [class*=" bg-[rgba(253,224,71"] {
+    background-color: rgba(133, 77, 14, 0.12) !important;
+  }
+
+  :root.light [class^="bg-[rgba(255,171,243"],
+  :root.light [class*=" bg-[rgba(255,171,243"] {
+    background-color: rgba(157, 23, 77, 0.12) !important;
+  }
+
+  :root.light [class*="hover:bg-[#CDBDFF]"]:hover {
+    background-color: var(--accent-purple-dark) !important;
+  }
+
+  :root.light [class*="hover:bg-[#BDF4FF]"]:hover {
+    background-color: var(--accent-blue-dark) !important;
+  }
+
+  :root.light [class*="hover:bg-[#FDE047]"]:hover {
+    background-color: var(--accent-yellow-dark) !important;
+  }
+
+  :root.light [class*="hover:bg-[#FFABF3]"]:hover {
+    background-color: var(--accent-pink-dark) !important;
+  }
+
+  :root.light .group:hover [class*="group-hover:bg-[#CDBDFF]"] {
+    background-color: var(--accent-purple-dark) !important;
+  }
+
+  :root.light .group:hover [class*="group-hover:bg-[#BDF4FF]"] {
+    background-color: var(--accent-blue-dark) !important;
+  }
+
+  :root.light .group:hover [class*="group-hover:bg-[#FDE047]"] {
+    background-color: var(--accent-yellow-dark) !important;
+  }
+
+  :root.light .group:hover [class*="group-hover:bg-[#FFABF3]"] {
+    background-color: var(--accent-pink-dark) !important;
+  }
+
+  :root.light [class*="border-[#CDBDFF]"] {
+    border-color: rgba(91, 33, 182, 0.35) !important;
+  }
+
+  :root.light [class*="border-[#BDF4FF]"] {
+    border-color: rgba(14, 116, 144, 0.35) !important;
+  }
+
+  :root.light [class*="border-[#FDE047]"] {
+    border-color: rgba(133, 77, 14, 0.35) !important;
+  }
+
+  :root.light [class*="border-[#FFABF3]"] {
+    border-color: rgba(157, 23, 77, 0.35) !important;
+  }
+
+  :root.light [class*="hover:border-[#CDBDFF]"]:hover {
+    border-color: rgba(91, 33, 182, 0.45) !important;
+  }
+
+  :root.light [class*="hover:border-[#BDF4FF]"]:hover {
+    border-color: rgba(14, 116, 144, 0.45) !important;
+  }
+
+  :root.light [class*="hover:border-[#FDE047]"]:hover {
+    border-color: rgba(133, 77, 14, 0.45) !important;
+  }
+
+  :root.light [class*="hover:border-[#FFABF3]"]:hover {
+    border-color: rgba(157, 23, 77, 0.45) !important;
+  }
+
+  :root.light [class*="focus:border-[#CDBDFF]"]:focus {
+    border-color: rgba(91, 33, 182, 0.45) !important;
+  }
+
+  :root.light [class*="focus:border-[#BDF4FF]"]:focus {
+    border-color: rgba(14, 116, 144, 0.45) !important;
+  }
+
+  :root.light [class*="focus:border-[#FDE047]"]:focus {
+    border-color: rgba(133, 77, 14, 0.45) !important;
+  }
+
+  :root.light [class*="focus:border-[#FFABF3]"]:focus {
+    border-color: rgba(157, 23, 77, 0.45) !important;
+  }
+
+  :root.light [class*="ring-[#CDBDFF]"],
+  :root.light [class*="focus:ring-[#CDBDFF]"]:focus {
+    --tw-ring-color: rgba(91, 33, 182, 0.35) !important;
+  }
+
+  :root.light [class*="ring-[#BDF4FF]"],
+  :root.light [class*="focus:ring-[#BDF4FF]"]:focus {
+    --tw-ring-color: rgba(14, 116, 144, 0.35) !important;
+  }
+
+  :root.light [class*="ring-[#FDE047]"],
+  :root.light [class*="focus:ring-[#FDE047]"]:focus {
+    --tw-ring-color: rgba(133, 77, 14, 0.35) !important;
+  }
+
+  :root.light [class*="ring-[#FFABF3]"],
+  :root.light [class*="focus:ring-[#FFABF3]"]:focus {
+    --tw-ring-color: rgba(157, 23, 77, 0.35) !important;
+  }
+
+  :root.light [class*="from-[#CDBDFF]"] {
+    --tw-gradient-from: var(--accent-purple-dark) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgb(91 33 182 / 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+  }
+
+  :root.light [class*="from-[#BDF4FF]"] {
+    --tw-gradient-from: var(--accent-blue-dark) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgb(14 116 144 / 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+  }
+
+  :root.light [class*="from-[#FDE047]"] {
+    --tw-gradient-from: var(--accent-yellow-dark) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgb(133 77 14 / 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+  }
+
+  :root.light [class*="from-[#FFABF3]"] {
+    --tw-gradient-from: var(--accent-pink-dark) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: rgb(157 23 77 / 0) var(--tw-gradient-to-position) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+  }
+
+  :root.light [class*="to-[#CDBDFF]"] {
+    --tw-gradient-to: var(--accent-purple-dark) var(--tw-gradient-to-position) !important;
+  }
+
+  :root.light [class*="to-[#BDF4FF]"] {
+    --tw-gradient-to: var(--accent-blue-dark) var(--tw-gradient-to-position) !important;
+  }
+
+  :root.light [class*="to-[#FDE047]"] {
+    --tw-gradient-to: var(--accent-yellow-dark) var(--tw-gradient-to-position) !important;
+  }
+
+  :root.light [class*="to-[#FFABF3]"] {
+    --tw-gradient-to: var(--accent-pink-dark) var(--tw-gradient-to-position) !important;
+  }
+
+  :root.light [class*="via-[#CDBDFF]"] {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--accent-purple-dark) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+  }
+
+  :root.light [class*="via-[#BDF4FF]"] {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--accent-blue-dark) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+  }
+
+  :root.light [class*="via-[#FDE047]"] {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--accent-yellow-dark) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+  }
+
+  :root.light [class*="via-[#FFABF3]"] {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--accent-pink-dark) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+  }
+
+  :root.light [class*="selection:bg-[#CDBDFF]"]::selection {
+    background-color: var(--accent-purple-dark) !important;
+    color: #FFFFFF !important;
+  }
+
+  :root.light [class*="selection:bg-[#BDF4FF]"]::selection {
+    background-color: var(--accent-blue-dark) !important;
+    color: #FFFFFF !important;
+  }
+
+  :root.light [class*="selection:bg-[#FDE047]"]::selection {
+    background-color: var(--accent-yellow-dark) !important;
+    color: #FFFFFF !important;
+  }
+
+  :root.light [class*="selection:bg-[#FFABF3]"]::selection {
+    background-color: var(--accent-pink-dark) !important;
+    color: #FFFFFF !important;
+  }
+
+  :root.light [class*="selection:text-[#17004b]"]::selection,
+  :root.light [class*="selection:text-[#380038]"]::selection,
+  :root.light [class*="selection:text-[#002A30]"]::selection {
+    color: #FFFFFF !important;
+  }
+
+  :root.light .auth-shell input,
+  :root.light .auth-shell textarea,
+  :root.light .auth-shell select {
+    color: var(--on-surface) !important;
+  }
+
+  :root.light .auth-shell input::placeholder,
+  :root.light .auth-shell textarea::placeholder {
+    color: var(--on-surface-low) !important;
+    opacity: 0.6 !important;
+  }
+
+  :root.light .auth-shell input:-webkit-autofill,
+  :root.light .auth-shell input:-webkit-autofill:hover,
+  :root.light .auth-shell input:-webkit-autofill:focus,
+  :root.light .auth-shell textarea:-webkit-autofill,
+  :root.light .auth-shell textarea:-webkit-autofill:hover,
+  :root.light .auth-shell textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--on-surface) !important;
+    box-shadow: 0 0 0 1000px #ffffff inset !important;
+    transition: background-color 9999s ease-out 0s;
+  }
+
+  .theme-gradient {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: radial-gradient(circle at 50% -20%, var(--primary-glow) 0%, transparent 60%);
+  }
+}
+
+@layer components {
+  .glass-card {
+    background-color: var(--surface);
+    @apply backdrop-blur-[20px] border border-[rgba(255,255,255,0.05)] rounded-2xl transition-all duration-500;
+    border-color: var(--border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .light .glass-card {
+    background-color: #FFFFFF;
+    border-color: rgba(15, 23, 42, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .logo-container {
+    background-color: var(--logo-bg);
+    @apply relative w-10 h-10 overflow-hidden rounded-xl border border-[rgba(255,255,255,0.1)] flex-shrink-0 transition-all duration-300;
+    box-shadow: 0 0 15px var(--primary-glow);
+  }
+
+  :root.light .logo-container {
+    border-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  .neon-text-primary {
+    color: var(--primary);
+    text-shadow: 0 0 10px var(--primary-glow);
+  }
+
+  .light .neon-text-primary {
+    text-shadow: 0 0 5px var(--primary-glow);
+  }
+
+  .btn-primary {
+    @apply transition-all duration-300 font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-2;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff;
+    box-shadow: 0 4px 15px var(--primary-glow);
+  }
+
+  .light .btn-primary {
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    @apply scale-[1.02] brightness-110 shadow-lg;
+    box-shadow: 0 8px 25px var(--primary-glow);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(0.98); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s infinite ease-in-out;
+}

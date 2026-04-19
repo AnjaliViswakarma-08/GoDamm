@@ -1,0 +1,96 @@
+# -----------------------------
+# OS / File Explorer junk
+# -----------------------------
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# -----------------------------
+# Editor / IDE metadata
+# -----------------------------
+.idea/
+.vscode/
+.metadata/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+# -----------------------------
+# Logs / reports / runtime dumps
+# -----------------------------
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.pid
+*.seed
+*.stackdump
+hs_err_pid*
+replay_pid*
+
+# -----------------------------
+# Environment / local-only config
+# -----------------------------
+.env
+.env.*
+!.env.example
+
+# -----------------------------
+# Generic temp files
+# -----------------------------
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.backup
+*.orig
+
+# -----------------------------
+# Java / Maven / Gradle (backend)
+# -----------------------------
+*.class
+.gradle/
+target/
+build/
+out/
+backend/target/
+backend/target/classes/
+backend/target/maven-status/
+backend/build/
+backend/out/
+backend/.mvn/timing.properties
+
+# Maven / test outputs
+backend/surefire-reports/
+backend/failsafe-reports/
+backend/.flattened-pom.xml
+
+# -----------------------------
+# Node / Vite / TypeScript (frontend)
+# -----------------------------
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.vite/
+frontend/.vite/
+.cache/
+frontend/.cache/
+coverage/
+frontend/coverage/
+*.tsbuildinfo
+
+# -----------------------------
+# Backup / scratch folders
+# -----------------------------
+**/test_backup/

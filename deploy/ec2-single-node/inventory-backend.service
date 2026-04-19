@@ -1,0 +1,18 @@
+[Unit]
+Description=Godamm Backend Container
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/home/ubuntu/GoDamm
+EnvironmentFile=/home/ubuntu/GoDamm/.env
+ExecStart=/usr/bin/docker compose up -d backend
+ExecStop=/usr/bin/docker compose stop backend
+ExecReload=/bin/sh -c '/usr/bin/docker compose pull backend && /usr/bin/docker compose up -d --no-build backend'
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target
