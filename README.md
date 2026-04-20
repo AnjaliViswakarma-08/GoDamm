@@ -45,7 +45,13 @@ A production-ready, full-stack inventory management platform built with **Spring
 - [Repository Structure](#repository-structure)
 - [Installation & Setup](#installation--setup)
 - [Environment Variables](#environment-variables)
-- [Deployment](#deployment)
+- [Database Design](#database-design)
+  - [Entity Relationship Model](#entity-relationship-model)
+  - [Key Design Decisions](#key-design-decisions)
+- [Deployment Architecture](#deployment-architecture)
+  - [Infrastructure Overview](#infrastructure-overview)
+  - [Quick Deploy on EC2](#quick-deploy-on-ec2)
+  - [CI/CD (GitHub Actions)](#cicd-github-actions)
 - [Security Hardening](#security-hardening)
 - [License](#license)
 
@@ -1119,7 +1125,62 @@ Copy `.env.example` to `.env` and configure:
 
 ---
 
-## Deployment
+## Database Design
+
+### Entity Relationship Model
+
+The MySQL schema consists of seven tables. All tables include a `user_id` foreign key to enforce data isolation. Key relationships: `users` ←→ `user_otp`, `users` ←→ `suppliers`, `suppliers` ←→ `products`, `products` ←→ `orders`, `users` ←→ `sales`, and `users` ←→ `profit_records`.
+
+```mermaid
+erDiagram
+    USERS ||--o{ USER_OTP : "has"
+    USERS ||--o{ SUPPLIERS : "owns"
+    USERS ||--o{ PRODUCTS : "owns"
+    USERS ||--o{ SALES : "owns"
+    USERS ||--o{ ORDERS : "owns"
+    USERS ||--o{ PROFIT_RECORDS : "owns"
+    SUPPLIERS ||--o{ PRODUCTS : "supplies"
+    PRODUCTS ||--o{ ORDERS : "ordered in"
+```
+*Figure 11.1: Entity Relationship Diagram*
+
+### Key Design Decisions
+
+#### Atomic Stock Decrement
+
+Stock updates use a single SQL `UPDATE` with a `WHERE stock >= qty` condition. This prevents overselling under concurrent requests without requiring application-level locks or optimistic locking retry logic.
+
+#### Profit Snapshots
+
+Rather than recalculating profit on every dashboard load, a `ProfitRecord` row is appended after each sale batch. The dashboard retrieves profit in O(1) time using `findTopByUserIdOrderByTimestampDesc()`, keeping dashboard response times fast regardless of transaction history size.
+
+#### Multi-Tenant Isolation
+
+No Row Level Security or schema separation is used. Instead, every query includes an explicit `AND user_id = ?` condition. This approach is simple, auditable, and scales well for the targeted user base.
+
+---
+
+## Deployment Architecture
+
+### Infrastructure Overview
+
+The application runs in a containerised deployment on a single Amazon EC2 instance. Docker Compose manages three containers: the Spring Boot backend, MySQL 8, and Redis 7. Nginx runs as the SSL-terminating reverse proxy, forwarding traffic to the backend container on port 8080.
+
+```mermaid
+flowchart TB
+    CLIENT(("🌐 Web Traffic")) -->|"HTTPS (:443)"| NGINX["Nginx Reverse Proxy\n(SSL Termination)"]
+    
+    subgraph "Amazon EC2 Instance"
+        direction TB
+        NGINX -->|"Proxy Pass :8080"| APP["Spring Boot Backend\n(Docker Container)"]
+        
+        subgraph "Docker Compose Network"
+            APP -->|"JDBC :3306"| MYSQL[("MySQL 8\nContainer")]
+            APP -->|"TCP :6379"| REDIS[("Redis 7\nContainer")]
+        end
+    end
+```
+*Figure 12.1: Deployment Architecture – EC2, Docker, Nginx*
 
 Detailed runbook: [`deploy/ec2-single-node/README.md`](deploy/ec2-single-node/README.md)
 
