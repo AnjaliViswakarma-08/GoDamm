@@ -1236,3 +1236,15 @@ This project is for educational and portfolio purposes.
 ---
 
 > **Godamm** — Made with ❤️ — An Inventory Management System
+
+---
+
+## Appendices
+
+### Appendix A: API Reference
+API documentation can be accessed via standard REST conventions during local development. Default endpoints are mapped under `/api/` and authentication under `/auth/`.
+
+### Appendix B: Helpful Docker Commands
+- **View Backend Logs:** `docker compose logs -f inventory-backend`
+- **Rebuild Containers:** `docker compose up -d --build`
+- **Database Shell:** `docker exec -it inventory-mysql mysql -u root -p`
