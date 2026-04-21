@@ -1248,3 +1248,39 @@ API documentation can be accessed via standard REST conventions during local dev
 - **View Backend Logs:** `docker compose logs -f inventory-backend`
 - **Rebuild Containers:** `docker compose up -d --build`
 - **Database Shell:** `docker exec -it inventory-mysql mysql -u root -p`
+
+### Appendix C: Software & Tools Used
+
+The **Godamm Inventory Management System** leverages a comprehensive suite of modern technologies spanning the frontend, backend, database, and infrastructure layers. Below is a descriptive breakdown of the core software and tools utilized:
+
+#### Frontend Development
+- **React 18:** The core UI library used to build a highly interactive, component-based user interface.
+- **Vite:** A next-generation build tool providing a lightning-fast development server and optimized production builds.
+- **TypeScript:** Adds strict static typing to JavaScript, significantly improving code maintainability, refactoring confidence, and early error detection.
+- **Tailwind CSS:** A utility-first CSS framework that enabled the rapid implementation of the bespoke "Neon-Glass" design system directly within the React components.
+- **Framer Motion:** A production-ready motion library for React, utilized to implement smooth, physics-based micro-animations and premium page transitions.
+- **Stitch:** A design tool (Project ID: `15072817964032502010`) used to conceptualize the "Ethereal Command Center" aesthetics and generate the initial UI foundations.
+
+#### Backend Development
+- **Java 17:** The robust, object-oriented language serving as the stable foundation for all backend business logic.
+- **Spring Boot 3:** An enterprise-ready framework that drastically accelerates API development through auto-configuration, dependency injection, and embedded servers.
+- **Spring Security & JWT:** Handles stateless authentication and request authorization, ensuring that endpoints are shielded and multi-tenant data remains strictly isolated.
+- **Spring Data JPA (Hibernate):** Simplifies database interactions by providing declarative repository interfaces and robust Object-Relational Mapping (ORM).
+- **Flyway:** Manages and version-controls database migrations, guaranteeing consistent schema evolution across both local development and production environments.
+
+#### Database & Caching
+- **MySQL 8:** The primary relational database management system, tasked with reliably storing all persistent inventory, supplier, user, and sales records.
+- **Redis 7:** An advanced in-memory data structure store used heavily for caching user-scoped read operations, drastically reducing primary database load and accelerating dashboard metric delivery.
+
+#### DevOps & Infrastructure
+- **Docker & Docker Compose:** Containerizes the backend application, MySQL, and Redis, ensuring completely identical environments from local development through to production, orchestrated via simple compose files.
+- **Nginx:** Acts as a high-performance reverse proxy, sitting directly in front of the application server to handle routing and SSL termination.
+- **Certbot (Let's Encrypt):** Provides automated, free SSL/TLS certificates, ensuring all backend API communication is encrypted over HTTPS.
+- **Amazon Web Services (EC2):** The reliable cloud compute provider hosting the production backend, reverse proxy, and containerized database instances.
+- **GitHub Actions:** Provides the continuous integration and delivery (CI/CD) pipeline, automatically building code, publishing images to Docker Hub, and triggering deployments on the EC2 instance upon code integration.
+- **Vercel:** A cloud platform specifically optimized for modern frontend frameworks, delivering the React web application via a lightning-fast global edge network.
+
+#### IDE & AI Tools
+- **Visual Studio Code (VS Code):** The primary Integrated Development Environment (IDE) used for building the React frontend, heavily extended with ecosystem plugins for styling, linting, and rapid UI development.
+- **Spring Tool Suite (STS) / Eclipse:** The dedicated Java IDE utilized for crafting the robust Spring Boot backend architecture, efficiently managing complex dependencies, and streamlining enterprise-grade application deployment.
+- **GitHub Copilot:** Advanced agentic AI assistant integrated into the development workflow to accelerate code generation, automate boilerplate tasks, ensure optimal design patterns, and provide intelligent architectural insights.
